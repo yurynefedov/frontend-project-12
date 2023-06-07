@@ -122,7 +122,7 @@ const Login = () => {
               <div className="text-center">
                 <span>{t('login.noAccount')}</span>
                 {' '}
-                <Link to="/signup">{t('login.registrationLink')}</Link>
+                <Link to={routes.signupPagePath()}>{t('login.registrationLink')}</Link>
               </div>
             </div>
           </div>

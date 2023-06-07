@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import routes from '../routes';
 
 import notFoundImage from '../assets/notFoundImage.svg';
 
@@ -15,7 +17,7 @@ const NotFound = () => {
       <p className="text-muted">
         {t('redirectionText')}
         {' '}
-        <a href="/">{t('redirectionLink')}</a>
+        <Link to={routes.chatPagePath()}>{t('redirectionLink')}</Link>
       </p>
     </div>
   );
