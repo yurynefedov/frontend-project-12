@@ -3,8 +3,10 @@ import React, {
   useContext,
   useCallback,
   useMemo,
+  createContext,
 } from 'react';
-import { AuthContext } from './index.js';
+
+const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
   const currentUserData = JSON.parse(localStorage.getItem('user'));

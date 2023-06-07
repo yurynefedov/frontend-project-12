@@ -1,5 +1,6 @@
-import React, { useContext, useMemo } from 'react';
-import { ApiContext } from './index.js';
+import React, { useContext, useMemo, createContext } from 'react';
+
+export const ApiContext = createContext(null);
 
 const promisifySocket = (socket, type, data) => new Promise((resolve, reject) => {
   socket.timeout(5000).emit(type, data, (error, response) => {
