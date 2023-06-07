@@ -18,8 +18,8 @@ const ChatPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const authHeader = await getAuthHeader();
+    const fetchData = () => {
+      const authHeader = getAuthHeader();
       dispatch(actions.fetchInitialData(authHeader))
         .unwrap()
         .catch((err) => {
