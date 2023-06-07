@@ -14,7 +14,7 @@ import Messages from './Messages';
 const ChatPage = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { getAuthHeader } = useAuth();
+  const { logOut, getAuthHeader } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,17 +22,19 @@ const ChatPage = () => {
       const authHeader = getAuthHeader();
       dispatch(actions.fetchInitialData(authHeader))
         .unwrap()
-        .catch((err) => {
-          console.error(err);
-          if (err.isAxiosError) {
-            if (err.response.status === 401) navigate(routes.loginPagePath());
-            else toast.error(t('errors.network'));
+        .catch((error) => {
+          console.error(error);
+          if (error.name === 'AxiosError') {
+            if (error.message.includes('401')) {
+              logOut();
+              navigate(routes.loginPagePath());
+            } else toast.error(t('errors.network'));
           } else toast.error(t('errors.unknown'));
         });
     };
 
     fetchData();
-  }, [dispatch, getAuthHeader, t, navigate]);
+  }, [dispatch, logOut, getAuthHeader, t, navigate]);
 
   const loadingStatus = useSelector((state) => state.channels).loading;
 
