@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Spinner from 'react-bootstrap/Spinner';
 import { useTranslation } from 'react-i18next';
-import { useAuth } from '../../hooks/index.js';
+import { useAuth } from '../../contexts/AuthProvider';
 import { actions } from '../../slices/index';
 import routes from '../../routes.js';
 

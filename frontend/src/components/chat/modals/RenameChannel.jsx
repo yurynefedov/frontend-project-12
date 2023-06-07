@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import leoProfanity from 'leo-profanity';
 import { selectors as channelsSelectors } from '../../../slices/channelsSlice';
-import { useApi } from '../../../hooks/index.js';
+import { useApi } from '../../../contexts/ApiProvider';
 import { getValidationSchema } from './AddChannel';
 
 const RenameChannel = ({ closeModal }) => {

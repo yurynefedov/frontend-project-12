@@ -8,7 +8,7 @@ import * as yup from 'yup';
 import leoProfanity from 'leo-profanity';
 import { selectors as channelsSelectors } from '../../../slices/channelsSlice';
 import { actions } from '../../../slices/index.js';
-import { useApi } from '../../../hooks/index.js';
+import { useApi } from '../../../contexts/ApiProvider';
 
 const getValidationSchema = (names) => yup.object().shape({
   name: yup

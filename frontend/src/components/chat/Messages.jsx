@@ -10,7 +10,8 @@ import { useTranslation } from 'react-i18next';
 import leoProfanity from 'leo-profanity';
 import { selectors as channelsSelectors } from '../../slices/channelsSlice';
 import { selectors as messagesSelectors } from '../../slices/messagesSlice';
-import { useApi, useAuth } from '../../hooks/index.js';
+import { useApi } from '../../contexts/ApiProvider';
+import { useAuth } from '../../contexts/AuthProvider';
 
 const Header = ({ currentChannel, currentChannelMessages }) => {
   const { t } = useTranslation();

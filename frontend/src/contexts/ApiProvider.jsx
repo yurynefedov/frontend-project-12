@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { ApiContext } from './index.js';
 
 const promisifySocket = (socket, type, data) => new Promise((resolve, reject) => {
@@ -25,5 +25,7 @@ const ApiProvider = ({ socket, children }) => {
     </ApiContext.Provider>
   );
 };
+
+export const useApi = () => useContext(ApiContext);
 
 export default ApiProvider;

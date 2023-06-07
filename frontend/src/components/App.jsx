@@ -15,8 +15,7 @@ import SignUp from './SignUp';
 import ChatPage from './chat/ChatPage';
 
 import routes from '../routes';
-import { useAuth } from '../hooks/index.js';
-import AuthProvider from '../contexts/AuthProvider.jsx';
+import AuthProvider, { useAuth } from '../contexts/AuthProvider';
 
 const PrivateRoute = ({ children }) => {
   const { loggedIn } = useAuth();
