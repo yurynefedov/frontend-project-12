@@ -18,4 +18,9 @@ export default configureStore({
     messages: messagesReducer,
     modal: modalReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: ['fetchInitialData/rejected'],
+    },
+  }),
 });

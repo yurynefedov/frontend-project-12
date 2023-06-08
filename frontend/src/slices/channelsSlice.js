@@ -6,13 +6,20 @@ import routes from '../routes';
 
 const fetchInitialData = createAsyncThunk(
   'fetchInitialData',
-  async (authHeader) => {
-    const response = await axios.get(
-      routes.dataPath(),
-      { headers: authHeader },
-    );
+  async (authHeader, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        routes.dataPath(),
+        { headers: authHeader },
+      );
 
-    return response.data;
+      return response.data;
+    } catch (error) {
+      if (error.isAxiosError) {
+        return rejectWithValue(error);
+      }
+      throw error;
+    }
   },
 );
 
