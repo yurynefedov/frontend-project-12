@@ -29,7 +29,10 @@ const ChatPage = () => {
               logOut();
               navigate(routes.loginPagePath());
             } else toast.error(t('errors.network'));
-          } else toast.error(t('errors.unknown'));
+          } else {
+            toast.error(t('errors.unknown'));
+            navigate(routes.unknownErrorPagePath());
+          }
         });
     };
 

@@ -13,6 +13,7 @@ import NotFound from './NotFound';
 import NavBar from './NavBar';
 import SignUp from './SignUp';
 import ChatPage from './chat/ChatPage';
+import UnknownError from './UnknownError';
 
 import routes from '../routes';
 import AuthProvider, { useAuth } from '../contexts/AuthProvider';
@@ -47,6 +48,7 @@ const App = () => (
             <Route path={routes.signupPagePath()} element={<SignUp />} />
           </Route>
           <Route path="*" element={<NotFound />} />
+          <Route path={routes.unknownErrorPagePath()} element={<UnknownError />} />
         </Routes>
       </div>
       <ToastContainer />

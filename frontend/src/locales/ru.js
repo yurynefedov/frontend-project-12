@@ -64,6 +64,9 @@ export default {
     errors: {
       network: 'Ошибка соединения',
       unknown: 'Неизвестная ошибка',
+      goesWrong: 'Упс! Что-то пошло не так...',
+      refreshText: 'Попробуйте обновить страницу',
+      refreshButton: 'Обновить',
     },
   },
 };
