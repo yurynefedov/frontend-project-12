@@ -1,6 +1,8 @@
 /* eslint-disable no-param-reassign */
 
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
+
+const modalsAdapter = createEntityAdapter();
 
 const initialState = {
   isOpen: false,
@@ -25,6 +27,14 @@ const modalSlice = createSlice({
     },
   },
 });
+
+const selectors = modalsAdapter.getSelectors((state) => state.messages);
+
+const customSelectors = {
+  selectChosenChannel: (state) => state.modal.data?.channelId,
+};
+
+export const modalsSelectors = { ...selectors, ...customSelectors };
 
 export const { actions } = modalSlice;
 export default modalSlice.reducer;

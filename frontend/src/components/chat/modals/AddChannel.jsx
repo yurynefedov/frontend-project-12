@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
 import leoProfanity from 'leo-profanity';
-import { selectors as channelsSelectors } from '../../../slices/channelsSlice';
+import { channelsSelectors } from '../../../slices/channelsSlice';
 import { actions } from '../../../slices/index.js';
 import { useApi } from '../../../contexts/ApiProvider';
 
@@ -26,7 +26,7 @@ const AddChannel = ({ closeModal }) => {
   const api = useApi();
   const inputRef = useRef();
 
-  const channelNames = useSelector(channelsSelectors.selectAll).map((channel) => channel.name);
+  const channelNames = useSelector(channelsSelectors.selectChannelNames);
 
   useEffect(() => {
     inputRef.current?.focus();

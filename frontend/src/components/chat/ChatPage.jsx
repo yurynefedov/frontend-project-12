@@ -36,9 +36,9 @@ const ChatPage = () => {
     fetchData();
   }, [dispatch, logOut, getAuthHeader, t, navigate]);
 
-  const loadingStatus = useSelector((state) => state.channels).loading;
+  const { loading } = useSelector((state) => state.channels);
 
-  return loadingStatus ? (
+  return loading ? (
     <div className="h-100 d-flex flex-column justify-content-center align-items-center">
       <Spinner animation="border" role="status" variant="secondary" />
       <span className="text-secondary fw-light">{t('chatPage.loading')}</span>

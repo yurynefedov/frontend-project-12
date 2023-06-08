@@ -5,7 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import leoProfanity from 'leo-profanity';
-import { selectors as channelsSelectors } from '../../../slices/channelsSlice';
+import { channelsSelectors } from '../../../slices/channelsSlice';
+import { modalsSelectors } from '../../../slices/modalSlice';
 import { useApi } from '../../../contexts/ApiProvider';
 import { getValidationSchema } from './AddChannel';
 
@@ -14,11 +15,9 @@ const RenameChannel = ({ closeModal }) => {
   const api = useApi();
   const inputRef = useRef();
 
-  const channelNames = useSelector(channelsSelectors.selectAll).map((channel) => channel.name);
-
-  const selectedChannelId = useSelector((state) => state.modal.data?.channelId);
-  const selectedChannel = useSelector(channelsSelectors.selectAll)
-    .find((channel) => channel.id === selectedChannelId);
+  const channelNames = useSelector(channelsSelectors.selectChannelNames);
+  const channelId = useSelector(modalsSelectors.selectChosenChannel);
+  const selectedChannel = useSelector((state) => channelsSelectors.selectById(state, channelId));
 
   useEffect(() => {
     setTimeout(() => inputRef.current?.select());
@@ -32,7 +31,7 @@ const RenameChannel = ({ closeModal }) => {
     onSubmit: async ({ name }) => {
       try {
         const safeName = leoProfanity.clean(name);
-        await api.renameChannel({ name: safeName, id: selectedChannelId });
+        await api.renameChannel({ name: safeName, id: channelId });
         toast.success(t('modals.renamed'));
         closeModal();
       } catch (error) {

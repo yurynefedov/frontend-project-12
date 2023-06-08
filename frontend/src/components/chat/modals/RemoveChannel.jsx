@@ -3,6 +3,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import { modalsSelectors } from '../../../slices/modalSlice';
 import { useApi } from '../../../contexts/ApiProvider';
 
 const RemoveChannel = ({ closeModal }) => {
@@ -10,7 +11,7 @@ const RemoveChannel = ({ closeModal }) => {
   const [loading, setLoading] = useState(false);
   const api = useApi();
 
-  const channelId = useSelector((state) => state.modal.data?.channelId);
+  const channelId = useSelector(modalsSelectors.selectChosenChannel);
 
   const removeChannel = async () => {
     setLoading(true);

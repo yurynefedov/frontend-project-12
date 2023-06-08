@@ -8,8 +8,8 @@ import { toast } from 'react-toastify';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import leoProfanity from 'leo-profanity';
-import { selectors as channelsSelectors } from '../../slices/channelsSlice';
-import { selectors as messagesSelectors } from '../../slices/messagesSlice';
+import { channelsSelectors } from '../../slices/channelsSlice';
+import { messagesSelectors } from '../../slices/messagesSlice';
 import { useApi } from '../../contexts/ApiProvider';
 import { useAuth } from '../../contexts/AuthProvider';
 
@@ -103,13 +103,8 @@ const SendMessageForm = ({ channel }) => {
 };
 
 const Messages = () => {
-  const { currentChannelId } = useSelector((state) => state.channels);
-
-  const currentChannel = useSelector(channelsSelectors.selectAll)
-    .find((channel) => channel.id === currentChannelId);
-
-  const currentChannelMessages = useSelector(messagesSelectors.selectAll)
-    .filter((message) => message.channelId === currentChannelId);
+  const currentChannel = useSelector(channelsSelectors.selectCurrentChannel);
+  const currentChannelMessages = useSelector(messagesSelectors.selectCurrentChannelMessages);
 
   useEffect(() => {
     animateScroll.scrollToBottom({ containerId: 'messages', duration: 0 });

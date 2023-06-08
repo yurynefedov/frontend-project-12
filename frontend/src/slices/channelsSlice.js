@@ -60,7 +60,21 @@ export const channelsSlice = createSlice({
   },
 });
 
-export const selectors = channelsAdapter.getSelectors((state) => state.channels);
+const selectors = channelsAdapter.getSelectors((state) => state.channels);
+
+const customSelectors = {
+  selectChannelNames: (state) => selectors.selectAll(state).map((channel) => channel.name),
+  selectCurrentChannelId: (state) => {
+    const { currentChannelId } = state.channels;
+    return currentChannelId;
+  },
+  selectCurrentChannel: (state) => {
+    const { currentChannelId } = state.channels;
+    return selectors.selectAll(state).find((channel) => channel.id === currentChannelId);
+  },
+};
+
+export const channelsSelectors = { ...selectors, ...customSelectors };
 
 export const actions = { ...channelsSlice.actions, fetchInitialData };
 
