@@ -9,7 +9,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthProvider';
 import routes from '../../routes';
 
-import loginImage from '../../assets/loginImage.jpeg';
+import loginImage from '../../assets/loginImage.svg';
 
 const Login = () => {
   const { t } = useTranslation();
@@ -69,7 +69,7 @@ const Login = () => {
               <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
                 <img
                   src={loginImage}
-                  className="rounded-circle"
+                  className="w-50"
                   alt={t('login.header')}
                 />
               </div>
