@@ -8,10 +8,12 @@ import notFoundImage from '../assets/notFoundImage.svg';
 const NotFound = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'notFound' });
 
+  const preventScroll = { overflow: 'hidden' };
+
   return (
-    <div className="text-center">
+    <div className="text-center d-flex flex-column align-items-center justify-content-center" style={preventScroll}>
       <img className="img-fluid h-25" src={notFoundImage} alt={t('header')} />
-      <h1 className="h4 text-muted">
+      <h1 className="h4 text-muted mt-3">
         {t('header')}
       </h1>
       <p className="text-muted">
