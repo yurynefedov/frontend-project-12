@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import routes from '../routes';
+import routes from '../../routes';
 
-import unknownErrorImage from '../assets/unknownErrorImage.svg';
+import unknownErrorImage from '../../assets/unknownErrorImage.svg';
 
 const UnknownError = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'errors' });

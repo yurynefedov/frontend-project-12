@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Navbar as NavigationBar, Container, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useAuth } from '../contexts/AuthProvider';
-import routes from '../routes';
+import { useAuth } from '../../contexts/AuthProvider';
+import routes from '../../routes';
 
 const NavBar = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'navBar' });

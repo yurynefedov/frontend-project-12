@@ -8,12 +8,12 @@ import {
 } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
-import Login from './Login';
-import NotFound from './NotFound';
-import NavBar from './NavBar';
-import SignUp from './SignUp';
+import Login from './login/Login';
+import NotFound from './errors/NotFound';
+import NavBar from './common-components/NavBar';
+import SignUp from './signup/SignUp';
 import ChatPage from './chat/ChatPage';
-import UnknownError from './UnknownError';
+import UnknownError from './errors/UnknownError';
 
 import routes from '../routes';
 import AuthProvider, { useAuth } from '../contexts/AuthProvider';

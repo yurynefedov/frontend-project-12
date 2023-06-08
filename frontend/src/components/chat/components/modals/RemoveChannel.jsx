@@ -3,8 +3,8 @@ import { Modal, Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import { modalsSelectors } from '../../../slices/modalSlice';
-import { useApi } from '../../../contexts/ApiProvider';
+import { modalsSelectors } from '../../../../slices/modalSlice';
+import { useApi } from '../../../../contexts/ApiProvider';
 
 const RemoveChannel = ({ closeModal }) => {
   const { t } = useTranslation();

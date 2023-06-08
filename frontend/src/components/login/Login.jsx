@@ -6,10 +6,10 @@ import * as yup from 'yup';
 import { Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthProvider';
-import routes from '../routes';
+import { useAuth } from '../../contexts/AuthProvider';
+import routes from '../../routes';
 
-import loginImage from '../assets/loginImage.jpeg';
+import loginImage from '../../assets/loginImage.jpeg';
 
 const Login = () => {
   const { t } = useTranslation();

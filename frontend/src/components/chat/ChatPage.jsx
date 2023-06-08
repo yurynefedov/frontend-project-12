@@ -8,8 +8,8 @@ import { useAuth } from '../../contexts/AuthProvider';
 import { actions } from '../../slices/index';
 import routes from '../../routes.js';
 
-import Channels from './Channels';
-import Messages from './Messages';
+import Channels from './components/Channels';
+import Messages from './components/Messages';
 
 const ChatPage = () => {
   const { t } = useTranslation();

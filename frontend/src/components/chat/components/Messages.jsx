@@ -8,10 +8,10 @@ import { toast } from 'react-toastify';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import leoProfanity from 'leo-profanity';
-import { channelsSelectors } from '../../slices/channelsSlice';
-import { messagesSelectors } from '../../slices/messagesSlice';
-import { useApi } from '../../contexts/ApiProvider';
-import { useAuth } from '../../contexts/AuthProvider';
+import { channelsSelectors } from '../../../slices/channelsSlice';
+import { messagesSelectors } from '../../../slices/messagesSlice';
+import { useApi } from '../../../contexts/ApiProvider';
+import { useAuth } from '../../../contexts/AuthProvider';
 
 const Header = ({ currentChannel, currentChannelMessages }) => {
   const { t } = useTranslation();

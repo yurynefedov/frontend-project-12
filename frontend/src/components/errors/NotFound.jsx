@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import routes from '../routes';
+import routes from '../../routes';
 
-import notFoundImage from '../assets/notFoundImage.svg';
+import notFoundImage from '../../assets/notFoundImage.svg';
 
 const NotFound = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'notFound' });

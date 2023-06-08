@@ -7,10 +7,10 @@ import { Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import leoProfanity from 'leo-profanity';
-import { useAuth } from '../contexts/AuthProvider';
-import routes from '../routes.js';
+import { useAuth } from '../../contexts/AuthProvider';
+import routes from '../../routes.js';
 
-import registrationImage from '../assets/registrationImage.jpg';
+import registrationImage from '../../assets/registrationImage.jpg';
 
 const SignUp = () => {
   const { t } = useTranslation();

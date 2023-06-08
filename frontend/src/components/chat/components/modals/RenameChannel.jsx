@@ -1,48 +1,38 @@
 import React, { useEffect, useRef } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
-import * as yup from 'yup';
 import leoProfanity from 'leo-profanity';
-import { channelsSelectors } from '../../../slices/channelsSlice';
-import { actions } from '../../../slices/index.js';
-import { useApi } from '../../../contexts/ApiProvider';
+import { channelsSelectors } from '../../../../slices/channelsSlice';
+import { modalsSelectors } from '../../../../slices/modalSlice';
+import { useApi } from '../../../../contexts/ApiProvider';
+import { getValidationSchema } from './AddChannel';
 
-const getValidationSchema = (names) => yup.object().shape({
-  name: yup
-    .string()
-    .trim()
-    .min(3, 'modals.min')
-    .max(20, 'modals.max')
-    .notOneOf(names, 'modals.uniq')
-    .required('modals.required'),
-});
-
-const AddChannel = ({ closeModal }) => {
+const RenameChannel = ({ closeModal }) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
   const api = useApi();
   const inputRef = useRef();
 
   const channelNames = useSelector(channelsSelectors.selectChannelNames);
+  const channelId = useSelector(modalsSelectors.selectChosenChannel);
+  const selectedChannel = useSelector((state) => channelsSelectors.selectById(state, channelId));
 
   useEffect(() => {
-    setTimeout(() => inputRef.current?.focus());
+    setTimeout(() => inputRef.current?.select());
   }, []);
 
   const formik = useFormik({
     initialValues: {
-      name: '',
+      name: selectedChannel.name,
     },
     validationSchema: getValidationSchema(channelNames),
     onSubmit: async ({ name }) => {
       try {
         const safeName = leoProfanity.clean(name);
-        const data = await api.addChannel({ name: safeName });
-        dispatch(actions.setCurrentChannel(data.id));
-        toast.success(t('modals.created'));
+        await api.renameChannel({ name: safeName, id: channelId });
+        toast.success(t('modals.renamed'));
         closeModal();
       } catch (error) {
         console.error(error);
@@ -56,7 +46,7 @@ const AddChannel = ({ closeModal }) => {
   return (
     <>
       <Modal.Header closeButton>
-        <Modal.Title>{t('modals.addChannel')}</Modal.Title>
+        <Modal.Title>{t('modals.renameChannel')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={formik.handleSubmit}>
@@ -72,7 +62,7 @@ const AddChannel = ({ closeModal }) => {
               name="name"
               id="name"
             />
-            <label className="visually-hidden" htmlFor="name">{t('modals.channelName')}</label>
+            <label className="visually-hidden" htmlFor="name">{t('modals.newChannelName')}</label>
             <Form.Control.Feedback type="invalid">
               {t(formik.errors.name)}
             </Form.Control.Feedback>
@@ -99,6 +89,5 @@ const AddChannel = ({ closeModal }) => {
     </>
   );
 };
-export { getValidationSchema };
 
-export default AddChannel;
+export default RenameChannel;

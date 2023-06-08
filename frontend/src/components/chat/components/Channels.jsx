@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { Button } from 'react-bootstrap';
 import { PlusSquare } from 'react-bootstrap-icons';
 import { animateScroll } from 'react-scroll';
-import { channelsSelectors } from '../../slices/channelsSlice';
-import { actions } from '../../slices/index';
+import { channelsSelectors } from '../../../slices/channelsSlice';
+import { actions } from '../../../slices/index';
 
 import Channel from './Channel';
 import Modal from './modals/Modal';
