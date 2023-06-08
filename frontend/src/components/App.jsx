@@ -4,7 +4,7 @@ import {
   Routes,
   Route,
   Navigate,
-  useLocation,
+  Outlet,
 } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
@@ -17,12 +17,19 @@ import ChatPage from './chat/ChatPage';
 import routes from '../routes';
 import AuthProvider, { useAuth } from '../contexts/AuthProvider';
 
-const PrivateRoute = ({ children }) => {
+const PrivateRoute = () => {
   const { loggedIn } = useAuth();
-  const location = useLocation();
 
   return (
-    loggedIn ? children : <Navigate to={routes.loginPagePath()} state={{ from: location }} />
+    loggedIn ? <Outlet /> : <Navigate to={routes.loginPagePath()} />
+  );
+};
+
+const PublicRoute = () => {
+  const { loggedIn } = useAuth();
+
+  return (
+    loggedIn ? <Navigate to={routes.chatPagePath()} /> : <Outlet />
   );
 };
 
@@ -32,15 +39,13 @@ const App = () => (
       <div className="d-flex flex-column vh-100">
         <NavBar />
         <Routes>
-          <Route
-            exact
-            path={routes.chatPagePath()}
-            element={
-              <PrivateRoute><ChatPage /></PrivateRoute>
-            }
-          />
-          <Route path={routes.loginPagePath()} element={<Login />} />
-          <Route path={routes.signupPagePath()} element={<SignUp />} />
+          <Route element={<PrivateRoute />}>
+            <Route path={routes.chatPagePath()} element={<ChatPage />} />
+          </Route>
+          <Route element={<PublicRoute />}>
+            <Route path={routes.loginPagePath()} element={<Login />} />
+            <Route path={routes.signupPagePath()} element={<SignUp />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
