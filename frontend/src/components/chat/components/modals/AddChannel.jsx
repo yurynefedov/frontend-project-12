@@ -81,6 +81,7 @@ const AddChannel = ({ closeModal }) => {
                 className="me-2"
                 variant="secondary"
                 type="button"
+                disabled={formik.isSubmitting}
                 onClick={closeModal}
               >
                 {t('modals.cancel')}

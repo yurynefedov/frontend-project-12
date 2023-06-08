@@ -100,6 +100,7 @@ const SignUp = () => {
                     autoComplete="username"
                     isInvalid={(formik.errors.username && formik.touched.username)
                       || regFailedWithConflict}
+                    disabled={formik.isSubmitting}
                     required
                     ref={inputRef}
                   />
@@ -126,6 +127,7 @@ const SignUp = () => {
                     aria-describedby="passwordHelpBlock"
                     isInvalid={(formik.errors.password && formik.touched.password)
                       || regFailedWithConflict}
+                    disabled={formik.isSubmitting}
                     required
                     autoComplete="new-password"
                   />
@@ -149,6 +151,7 @@ const SignUp = () => {
                         (formik.errors.confirmPassword && formik.touched.confirmPassword)
                         || regFailedWithConflict
                     }
+                    disabled={formik.isSubmitting}
                     required
                     autoComplete="new-password"
                   />
@@ -165,6 +168,7 @@ const SignUp = () => {
                   type="submit"
                   variant="outline-primary"
                   className="w-100"
+                  disabled={formik.isSubmitting}
                 >
                   {t('signup.signup')}
                 </Button>

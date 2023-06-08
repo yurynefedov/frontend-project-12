@@ -86,6 +86,7 @@ const Login = () => {
                     id="username"
                     autoComplete="username"
                     isInvalid={authFailed}
+                    disabled={formik.isSubmitting}
                     required
                     ref={inputRef}
                     placeholder={t('login.username')}
@@ -101,6 +102,7 @@ const Login = () => {
                     id="password"
                     autoComplete="current-password"
                     isInvalid={authFailed}
+                    disabled={formik.isSubmitting}
                     required
                     placeholder={t('login.password')}
                   />
@@ -113,6 +115,7 @@ const Login = () => {
                   type="submit"
                   variant="outline-primary"
                   className="w-100 mb-3"
+                  disabled={formik.isSubmitting}
                 >
                   {t('login.submit')}
                 </Button>
