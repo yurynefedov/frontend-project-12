@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import leoProfanity from 'leo-profanity';
 import { useAuth } from '../../contexts/AuthProvider';
 import routes from '../../routes.js';
@@ -173,6 +173,13 @@ const SignUp = () => {
                   {t('signup.signup')}
                 </Button>
               </Form>
+            </div>
+            <div className="card-footer p-4">
+              <div className="text-center">
+                <span>{t('signup.alreadyHave')}</span>
+                {' '}
+                <Link to={routes.loginPagePath()}>{t('signup.account')}</Link>
+              </div>
             </div>
           </div>
         </div>

@@ -30,6 +30,8 @@ export default {
       confirmPassword: 'Подтвердите пароль',
       passwordMatch: 'Пароли должны совпадать',
       signup: 'Зарегистрироваться',
+      alreadyHave: 'У меня уже есть',
+      account: 'аккаунт',
     },
     chatPage: {
       loading: 'Загрузка...',
