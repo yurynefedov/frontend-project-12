@@ -34,13 +34,36 @@ const Header = ({ currentChannel, currentChannelMessages }) => {
   );
 };
 
-const Message = ({ message, id }) => (
-  <div className="text-break mb-2" key={id}>
-    <b>{message.username}</b>
-    {': '}
-    {message.text}
-  </div>
-);
+const Message = ({ message, id }) => {
+  const { user } = useAuth();
+
+  const isAuthUser = () => message.username === user.username;
+
+  const classNames = isAuthUser()
+    ? 'row justify-content-end'
+    : 'row justify-content-start';
+
+  return (
+    <div className="" key={id}>
+      <div className="container">
+        <div className={classNames}>
+          <div className="col-md-6">
+            <div className="card mt-2 bg-light rounded">
+              <div className="card-body p-2">
+                <div className="media">
+                  <div className="media-body">
+                    <h6 className="text-primary">{message.username}</h6>
+                    <span>{message.text}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const SendMessageForm = ({ channel }) => {
   const { t } = useTranslation();
