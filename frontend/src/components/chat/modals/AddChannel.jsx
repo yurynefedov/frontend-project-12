@@ -29,7 +29,7 @@ const AddChannel = ({ closeModal }) => {
   const channelNames = useSelector(channelsSelectors.selectChannelNames);
 
   useEffect(() => {
-    inputRef.current?.focus();
+    setTimeout(() => inputRef.current?.focus());
   }, []);
 
   const formik = useFormik({
