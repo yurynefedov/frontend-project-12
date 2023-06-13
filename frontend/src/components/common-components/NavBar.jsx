@@ -6,7 +6,7 @@ import routes from '../../routes';
 
 const NavBar = () => {
   const { t } = useTranslation('translation', { keyPrefix: 'navBar' });
-  const { loggedIn, logOut } = useAuth();
+  const { user, logOut } = useAuth();
 
   return (
     <NavigationBar bg="white" expand="lg" className="shadow-sm">
@@ -15,7 +15,7 @@ const NavBar = () => {
           {t('header')}
         </NavigationBar.Brand>
         {
-          loggedIn && (
+          user && (
             <Button onClick={logOut}>{t('exitButton')}</Button>
           )
         }

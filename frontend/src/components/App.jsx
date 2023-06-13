@@ -19,18 +19,18 @@ import routes from '../routes';
 import AuthProvider, { useAuth } from '../contexts/AuthProvider';
 
 const PrivateRoute = () => {
-  const { loggedIn } = useAuth();
+  const { user } = useAuth();
 
   return (
-    loggedIn ? <Outlet /> : <Navigate to={routes.loginPagePath()} />
+    user ? <Outlet /> : <Navigate to={routes.loginPagePath()} />
   );
 };
 
 const PublicRoute = () => {
-  const { loggedIn } = useAuth();
+  const { user } = useAuth();
 
   return (
-    loggedIn ? <Navigate to={routes.chatPagePath()} /> : <Outlet />
+    user ? <Navigate to={routes.chatPagePath()} /> : <Outlet />
   );
 };
 

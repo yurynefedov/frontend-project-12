@@ -18,18 +18,14 @@ const AuthProvider = ({ children }) => {
     }
     : null);
 
-  const [loggedIn, setLoggedIn] = useState(!!currentUserData);
-
   const logIn = (userData) => {
     localStorage.setItem('user', JSON.stringify(userData));
     setUser({ username: userData.username, token: userData.token });
-    setLoggedIn(true);
   };
 
   const logOut = () => {
     localStorage.removeItem('user');
     setUser(null);
-    setLoggedIn(false);
   };
 
   const getAuthHeader = useCallback(() => (user?.token ? { Authorization: `Bearer ${user.token}` } : {}), [user]);
@@ -38,12 +34,11 @@ const AuthProvider = ({ children }) => {
     () => (
       {
         user,
-        loggedIn,
         logIn,
         logOut,
         getAuthHeader,
       }),
-    [user, loggedIn, getAuthHeader],
+    [user, getAuthHeader],
   );
 
   return (
