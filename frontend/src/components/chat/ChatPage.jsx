@@ -24,11 +24,9 @@ const ChatPage = () => {
         .unwrap()
         .catch((error) => {
           console.error(error);
-          if (error.isAxiosError) {
-            if (error.response.status === 401) {
-              logOut();
-              navigate(routes.loginPagePath());
-            } else toast.error(t('errors.network'));
+          if (error.isAxiosError && error.response?.status === 401) {
+            logOut();
+            navigate(routes.loginPagePath());
           } else {
             toast.error(t('errors.unknown'));
             navigate(routes.unknownErrorPagePath());
