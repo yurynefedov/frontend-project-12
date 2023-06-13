@@ -27,6 +27,7 @@ const init = async (socket) => {
   });
   socket.on('newChannel', (channel) => {
     store.dispatch(actions.addChannel(channel));
+    store.dispatch(actions.setCurrentChannel(channel.id));
   });
   socket.on('removeChannel', ({ id }) => {
     store.dispatch(actions.removeChannel(id));

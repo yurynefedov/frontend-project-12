@@ -1,13 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
 import leoProfanity from 'leo-profanity';
 import { channelsSelectors } from '../../../../slices/channelsSlice';
-import { actions } from '../../../../slices/index.js';
 import { useApi } from '../../../../contexts/ApiProvider';
 
 const getValidationSchema = (names) => yup.object().shape({
@@ -22,7 +21,6 @@ const getValidationSchema = (names) => yup.object().shape({
 
 const AddChannel = ({ closeModal }) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
   const api = useApi();
   const inputRef = useRef();
 
@@ -40,8 +38,7 @@ const AddChannel = ({ closeModal }) => {
     onSubmit: async ({ name }) => {
       try {
         const safeName = leoProfanity.clean(name);
-        const data = await api.addChannel({ name: safeName });
-        dispatch(actions.setCurrentChannel(data.id));
+        await api.addChannel({ name: safeName });
         toast.success(t('modals.created'));
         closeModal();
       } catch (error) {
